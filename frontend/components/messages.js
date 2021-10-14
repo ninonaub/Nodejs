@@ -3,24 +3,10 @@ import Router from 'next/router'
 import { socket } from '../config/web-sockets';
 
 
-const Messages = (props) => {
-  const{messages, username} = props;
-  // const username = props.username
-  // const [messages, setMessages] = useState([]);
-  // useEffect(() => {
-  //   if(Object.keys(Router.router.query).length > 0){
-  //         socket.on('message', (message, error) => {
-  //           console.log(5555)
-  //           console.log('slug ms', [ ...messages, message])
-  //           setMessages(msgs => [ ...msgs, message]);
-  //         });
-  //
-  //     }
-  //     else {
-  //         Router.push('/chat')
-  //     }
-  //     //return () => {setUsers([]); setMessages([])};
-  //  })
+function Messages(props) {
+  const messages = props.messages;
+  const username = props.username;
+
     return (
         <div>
             {

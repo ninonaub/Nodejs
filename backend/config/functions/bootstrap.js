@@ -231,7 +231,7 @@ module.exports = async () => {
   io.on('connection', function(socket) {
       socket.on('join', async({ username, room }, callback) => {
           try {
-              const userExists = await findUser(username ,12);
+              const userExists = await findUser(username , room);
 
               if(userExists.length > 0) {
                   callback(`User ${username} already exists in room no${room}. Please select a different name or room`);
@@ -242,7 +242,6 @@ module.exports = async () => {
                       status: "ONLINE",
                       socketId: socket.id
                   });
-
                   if(user) {
                       socket.join(user.room);
                       socket.emit('welcome', {
@@ -254,7 +253,10 @@ module.exports = async () => {
                           user: 'bot',
                           text: `${user.username} has joined`,
                       });
-
+                      io.to(user.room).emit('roomInfo', {
+                        room: user.room,
+                        users: await getUsersInRoom(user.room)
+                      });
                   } else {
                       callback(`user could not be created. Try again!`)
                   }
@@ -272,6 +274,7 @@ module.exports = async () => {
                         user: user.username,
                         text: data.message,
                     });
+                    console.log(1)
                     io.to(user.room).emit('roomInfo', {
                       room: user.room,
                       users: await getUsersInRoom(user.room)
@@ -294,6 +297,7 @@ module.exports = async () => {
                         user: user[0].username,
                         text: `User ${user[0].username} has left the chat.`,
                     });
+                    console.log(2)
                     io.to(user.room).emit('roomInfo', {
                         room: user.room,
                         users: await getUsersInRoom(user[0].room)

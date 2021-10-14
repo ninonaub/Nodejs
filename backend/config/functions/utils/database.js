@@ -9,10 +9,10 @@ async function findUser(username, room) {
 async function createUser({ username, room, status, socketId }) {
     try {
         const user = await strapi.services.chatuser.create({
-            username,
-            room,
+            username: username,
+            room: room,
             status: status,
-            socketId
+            socketId: socketId
         });
         return user;
     } catch(err) {
@@ -37,7 +37,7 @@ async function getUsersInRoom(room) {
 }
 async function deleteUser(socketId) {
     try {
-        const user = await strapi.services.users.delete({ socketId: socketId });
+        const user = await strapi.services.chatuser.delete({ socketId: socketId });
         return user;
     } catch(err) {
         console.log("Error while deleting the User", err);

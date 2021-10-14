@@ -12,21 +12,12 @@ function JoinRoom(props) {
         const inputValue = e.target.value;
         setUsername(inputValue);
     }
-    // function onJoinSuccess(data) {
-    //     setJoinData(data);
-    //     setUsername(data.userData.username);
-    //     setRoom(data.userData.room);
-    //     Router.push(
-    //       pathname: `/chatrooms/${data.userData.room}`,
-    //       props: data,
-    //     });
-    // }
+
     const onRoomChange = (e) => {
         const roomNo = e.target.value;
         setRoom(roomNo);
     }
     const onClick = () => {
-      console.log(1, username, room)
         if(username && room) {
             socket.emit('join', { username, room }, (error) => {
                 if(error) {
@@ -34,7 +25,6 @@ function JoinRoom(props) {
                     alert(error);
                 } else {
                     socket.on('welcome', (data) => {
-                      console.log('s',socket)
                         props.onJoinSuccess(data);
                     });
                 }
@@ -43,7 +33,6 @@ function JoinRoom(props) {
     }
     socket.on('welcome', (data) => {
         console.log("Welcome event inside JoinRoom", data);
-        console.log(socket, props)
         props.onJoinSuccess(data);
     });
     return (

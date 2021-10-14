@@ -27,36 +27,45 @@ const ChatRoom = ({})=> {
       console.log('click')
       sendMessage(message);
     }
+    const sendMessage = (message) => {
+          if(message) {
+              socket.emit('sendMessage',{ userId: userID, message }, (error) => {
+                  if(error) {
+                      alert(error)
+                      Router.push('/chat');
+                  }
+                  // else {
+                  //   socket.on('message', (message, error) => {
+                  //     console.log('slug ms', [ ...messages, message])
+                  //     setMessages(msgs => [ ...msgs, message]);
+                  //   });
+                  //   socket.on("roomInfo", (users) => {
+                  //     console.log('u',users.users)
+                  //     setUsers(users.users)
+                  //   });
+                  // }
+              });
 
-     const sendMessage = (message) => {
-            if(message) {
-                socket.emit('sendMessage',{ userId: userID, message }, (error) => {
-                    if(error) {
-                        alert(error)
-                        Router.push('/chat');
-                    }
-                    // else {
-                    //   socket.on('message', (message, error) => {
-                    //     console.log('slug ms', [ ...messages, message])
-                    //     setMessages(msgs => [ ...msgs, message]);
-                    //   });
-                    //   socket.on("roomInfo", (users) => {
-                    //     console.log('u',users.users)
-                    //     setUsers(users.users)
-                    //   });
-                    // }
-                });
-
-                setMessage('')
-            } else {
-                alert("Message can't be empty")
-            }
+              setMessage('')
+          } else {
+              alert("Message can't be empty")
+          }
     }
+    // socket.on('message', (message, error) => {
+    //
+    //   console.log('slug ms', [ ...messages, message])
+    //   setMessages([ ...messages, message]);
+    // });
+    // socket.on("roomInfo", (users) => {
+    //         console.log('u', users.users)
+    //         setUsers(users.users)
+    // });
     useEffect(() => {
       if(Object.keys(Router.router.query).length > 0){
             socket.on('message', (message, error) => {
-              console.log('slug ms', [ ...messages, message])
-              setMessages(msgs => [ ...msgs, message]);
+
+              // console.log('slug ms', [ ...messages, message])
+              setMessages([ ...messages, message]);
             });
 
         }
@@ -64,11 +73,11 @@ const ChatRoom = ({})=> {
             Router.push('/chat')
         }
         socket.on("roomInfo", (users) => {
-            console.log('u',users.users)
+            console.log('u', users.users)
             setUsers(users.users)
-          });
+          })
         //return () => {setUsers([]); setMessages([])};
-     })
+     }, [])
 
        return (
          //<Layout categories={categories}>

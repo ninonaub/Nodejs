@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "chatusers",
   "info": {
-    "name": "Chatuser"
+    "name": "Chatuser",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -20,8 +21,8 @@
     "room": {
       "type": "string"
     },
-    "socketid": {
-      "type": "integer"
+    "socketId": {
+      "type": "text"
     }
   }
 }
