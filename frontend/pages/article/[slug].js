@@ -3,12 +3,13 @@ import Moment from "react-moment"
 import { fetchAPI } from "../../lib/api"
 import Layout from "../../components/layout"
 import NextImage from "../../components/image"
+import Comment from "../../components/comment"
 import Seo from "../../components/seo"
 import { getStrapiMedia } from "../../lib/media"
 
 const Article = ({ article, categories }) => {
   const imageUrl = getStrapiMedia(article.image)
-
+  const comments = article.comments
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
@@ -46,6 +47,15 @@ const Article = ({ article, categories }) => {
                 <Moment format="MMM Do YYYY">{article.published_at}</Moment>
               </p>
             </div>
+          </div>
+          <hr className="uk-divider-small" />
+          <div>
+            <div>Comments</div>
+            {comments.map((comment, i) => {
+              return (
+                <Comment comment={comment} key={`comment__${i}`} />
+              )
+            })}
           </div>
         </div>
       </div>

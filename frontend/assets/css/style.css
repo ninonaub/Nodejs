@@ -31,8 +31,20 @@ h1 {
 }
 
 .uk-navbar-container {
-  background: #fff !important;
+  background: #333 !important;
   font-family: Staatliches;
+}
+
+.uk-navbar-nav > li > a {
+  color: #fff !important;
+  font-weight: bold !important;
+  transition: ease-in-out .3s !important;
+}
+.uk-navbar-nav > li > a:hover {
+  color: #ccc !important;
+}
+.blog-name > li > a {
+  font-size: 2.5rem !important;
 }
 
 img:hover {

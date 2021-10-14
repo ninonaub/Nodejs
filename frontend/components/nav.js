@@ -4,9 +4,9 @@ import Link from "next/link"
 const Nav = ({ categories }) => {
   return (
     <div>
-      <nav className="uk-navbar-container" data-uk-navbar>
+      <nav className="uk-navbar-container uk-navbar" data-uk-navbar>
         <div className="uk-navbar-left">
-          <ul className="uk-navbar-nav">
+          <ul className="uk-navbar-nav blog-name">
             <li>
               <Link href="/">
                 <a>Strapi Blog</a>
@@ -25,6 +25,24 @@ const Nav = ({ categories }) => {
                 </li>
               )
             })}
+            <li>
+              <Link as="/chat" href="/chat">
+                <a className="uk-link-reset">
+                  <span className="material-icons">
+                    chat_bubble
+                  </span>
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link as="/login" href="/login">
+                <a className="uk-link-reset">
+                  <span className="material-icons">
+                    account_circle
+                  </span>
+                </a>
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

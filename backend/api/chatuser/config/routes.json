@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/chatusers",
+      "handler": "chatuser.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/chatusers/count",
+      "handler": "chatuser.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/chatusers/:id",
+      "handler": "chatuser.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/chatusers",
+      "handler": "chatuser.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/chatusers/:id",
+      "handler": "chatuser.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/chatusers/:id",
+      "handler": "chatuser.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
